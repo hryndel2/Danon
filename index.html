@@ -1,0 +1,68 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Passage Control
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   .closed {
+            background-color: red;
+        }
+        .open {
+            background-color: green;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="text-center">
+   <img alt="A scenic passage through a lush green landscape with a clear path leading into the distance" class="mb-4 rounded-lg shadow-lg w-48 h-32 object-cover mx-auto" src="yma.png"/>
+   <h1 class="text-4xl font-bold mb-4">
+    Passage Control
+   </h1>
+   <button class="px-4 py-2 text-white font-semibold rounded-lg open" id="toggleButton">
+    Open
+   </button>
+   <div class="mt-4">
+    <span class="text-2xl">
+     🥒
+    </span>
+    <span class="text-2xl">
+     🥛
+    </span>
+    <span class="text-2xl">
+     ☕
+    </span>
+   </div>
+  </div>
+  <script>
+   document.addEventListener('DOMContentLoaded', (event) => {
+            const button = document.getElementById('toggleButton');
+            const passageState = localStorage.getItem('passageState') || 'open';
+
+            if (passageState === 'closed') {
+                button.classList.remove('open');
+                button.classList.add('closed');
+                button.textContent = 'Closed';
+            }
+
+            button.addEventListener('click', () => {
+                if (button.classList.contains('open')) {
+                    button.classList.remove('open');
+                    button.classList.add('closed');
+                    button.textContent = 'Closed';
+                    localStorage.setItem('passageState', 'closed');
+                } else {
+                    button.classList.remove('closed');
+                    button.classList.add('open');
+                    button.textContent = 'Open';
+                    localStorage.setItem('passageState', 'open');
+                }
+            });
+        });
+  </script>
+ </body>
+</html>
