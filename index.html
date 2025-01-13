@@ -21,10 +21,10 @@
   <div class="text-center">
    <img alt="A scenic passage through a lush green landscape with a clear path leading into the distance" class="mb-4 rounded-lg shadow-lg w-48 h-32 object-cover mx-auto" src="rb_73575.png"/>
    <h1 class="text-4xl font-bold mb-4">
-    Passage Control
+    Прохож
    </h1>
    <button class="px-4 py-2 text-white font-semibold rounded-lg open" id="toggleButton">
-    Open
+    Открыт
    </button>
    <div class="mt-4">
     <span class="text-2xl">
@@ -46,19 +46,19 @@
             if (passageState === 'closed') {
                 button.classList.remove('open');
                 button.classList.add('closed');
-                button.textContent = 'Closed';
+                button.textContent = 'Закрыт';
             }
 
             button.addEventListener('click', () => {
                 if (button.classList.contains('open')) {
                     button.classList.remove('open');
                     button.classList.add('closed');
-                    button.textContent = 'Closed';
+                    button.textContent = 'Закрыт';
                     localStorage.setItem('passageState', 'closed');
                 } else {
                     button.classList.remove('closed');
                     button.classList.add('open');
-                    button.textContent = 'Open';
+                    button.textContent = 'Открыт';
                     localStorage.setItem('passageState', 'open');
                 }
             });
