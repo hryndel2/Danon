@@ -1,52 +1,48 @@
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Passage Control
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-   .closed {
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Passage Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .closed {
             background-color: red;
         }
         .open {
             background-color: green;
         }
-  </style>
- </head>
- <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="text-center">
-   <img alt="A scenic passage through a lush green landscape with a clear path leading into the distance" class="mb-4 rounded-lg shadow-lg w-48 h-32 object-cover mx-auto bg-opacity-50" src="rb_73575.png"/>
-   <h1 class="text-4xl font-bold mb-4">
-    Проход
-   </h1>
-   <button class="px-4 py-2 text-white font-semibold rounded-lg open" id="toggleButton">
-    Открыт
-   </button>
-   <div class="mt-4">
-    <span class="text-2xl">
-     🥒
-    </span>
-    <span class="text-2xl">
-     🥛
-    </span>
-    <span class="text-2xl">
-     ☕
-    </span>
-   </div>
-  </div>
-  <script>
-   document.addEventListener('DOMContentLoaded', (event) => {
+        .hidden {
+            display: none; /* Или используйте visibility: hidden; */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="text-center">
+        <div id="imageContainer" class="hidden"> <!-- Контейнер для изображения -->
+            <img alt="A scenic passage through a lush green landscape with a clear path leading into the distance" class="mb-4 rounded-lg shadow-lg w-48 h-32 object-cover mx-auto bg-opacity-50" src="rb_73575.png"/>
+        </div>
+        <h1 class="text-4xl font-bold mb-4">Проход</h1>
+        <button class="px-4 py-2 text-white font-semibold rounded-lg open" id="toggleButton">Открыт</button>
+        <div class="mt-4">
+            <span class="text-2xl">🥒</span>
+            <span class="text-2xl">🥛</span>
+            <span class="text-2xl">☕</span>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
             const button = document.getElementById('toggleButton');
+            const imageContainer = document.getElementById('imageContainer');
             const passageState = localStorage.getItem('passageState') || 'open';
 
             if (passageState === 'closed') {
                 button.classList.remove('open');
                 button.classList.add('closed');
                 button.textContent = 'Закрыт';
+                imageContainer.classList.add('hidden'); // Скрыть контейнер
+            } else {
+                imageContainer.classList.remove('hidden'); // Показать контейнер
             }
 
             button.addEventListener('click', () => {
@@ -54,15 +50,17 @@
                     button.classList.remove('open');
                     button.classList.add('closed');
                     button.textContent = 'Закрыт';
+                    imageContainer.classList.add('hidden'); // Скрыть контейнер
                     localStorage.setItem('passageState', 'closed');
                 } else {
                     button.classList.remove('closed');
                     button.classList.add('open');
                     button.textContent = 'Открыт';
+                    imageContainer.classList.remove('hidden'); // Показать контейнер
                     localStorage.setItem('passageState', 'open');
                 }
             });
         });
-  </script>
- </body>
+    </script>
+</body>
 </html>
